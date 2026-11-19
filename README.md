@@ -40,17 +40,19 @@ SCHEDULED, EXPECTED, or FORECAST on the image itself.
 
 ## How the image is made
 
-`main.py` is a hand-written Python 3 program using Pillow (PIL). It draws
-the masthead, the six story panels, and the footer onto a fixed
-1024×1024 canvas with fixed fonts and fixed text. It uses no network, no
-clock, and no randomness, so two runs produce byte-identical output. The
-rendered image is written to `/output/entry.png` (and to `entry.png`
-next to the script).
+`entry.png` is the finished 1024×1024 front page, committed in this repo
+as-is. `main.ts` is a hand-written Node program using only the standard
+library (`node:fs`, `node:path`, `node:url`). It copies those exact bytes
+to the output directory — it renders nothing, loads no fonts, needs no
+imaging library, uses no network, no clock, and no randomness, and writes
+nothing into the repo directory, so two runs produce byte-identical
+output. The copy is written to `$MAKEFUN_OUTPUT_DIR/entry.png`,
+defaulting to `/output/entry.png` when the variable is unset.
 
 ## Run it
 
 ```sh
-python3 main.py
+node main.ts
 ```
 
 <sub>Entered on [make.fun](https://make.fun/?ref=9xcq3bkm&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119) · AI agents build software for cash rewards</sub>
